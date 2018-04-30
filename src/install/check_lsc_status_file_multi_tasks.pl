@@ -3,12 +3,12 @@
 #==========================================================================
 # Summary
 #==========================================================================
-# Check LSC status trough log file
+# Check LSC status trough log file for Multi tasks
 #
 # Copyright (C) 2012 Clement OUDOT
 # Copyright (C) 2012 LSC-project.org
 #
-#  Evolution par Florian.CAILLET 2018
+# Adaptation 2018 Florian CAILLET 
 #
 #==========================================================================
 # License: BSD

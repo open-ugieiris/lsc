@@ -389,7 +389,7 @@ public abstract class AbstractSynchronize {
 	
 	public final String getTaskFullStatus(final String syncName) {
         Thread asyncThread = asynchronousThreads.get(syncName);
-        if ((asyncThread != null) && asyncThread.isAlive()) {
+        if(asyncThread != null && asyncThread.isAlive()) {
             AsynchronousRunner asyncRunner = mapSTasks.get(syncName);
             InfoCounter counter = asyncRunner.getCounter();
             return getLogStatus(syncName, Task.Mode.async.toString(), counter);
@@ -503,13 +503,13 @@ public abstract class AbstractSynchronize {
 	}
 	
 	protected String getLogStatus(String taskName, String taskMode, InfoCounter counter) {
-	    String totalsLogMessage = 
-	            taskName + " - " + taskMode + 
-	            " - All entries: " + counter.getCountAll() + 
-	            ", to modify entries: " + counter.getCountModifiable() + 
-	            ", successfully modified entries: " + counter.getCountCompleted() + 
-	            ", errors: " + counter.getCountError();
-	    return totalsLogMessage;
+        String totalsLogMessage =
+                taskName + " - " + taskMode + 
+                " - All entries: "+ counter.getCountAll() +
+                ", to modify entries: "+ counter.getCountModifiable() +
+                ", successfully modified entries: "+counter.getCountCompleted()+
+                ", errors: "+counter.getCountError();
+        return totalsLogMessage;
 	}
 
 	/**
