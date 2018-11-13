@@ -468,19 +468,19 @@ public final class JndiServices {
     }
 
     private static String convertToDomainExtension(Dn dn) {
-        String fqdn = "";
-        List<Rdn> rdns = dn.getRdns();
-        for (Rdn rdn : rdns) {
-            if (!rdn.getAva().getType().equalsIgnoreCase("dc")) {
-                return null;
-            }
-            if (fqdn.length() > 0) {
-                fqdn = rdn.getNormValue().getString() + "." + fqdn;
-            } else {
-                fqdn = rdn.getNormValue().getString();
-            }
-        }
-        return fqdn;
+	    String fqdn = "";
+	    List<Rdn> rdns = dn.getRdns();
+	    for(Rdn rdn: rdns) {
+	        if(!rdn.getAva().getType().equalsIgnoreCase("dc")) {
+	            return null;
+	        }
+	        if(fqdn.length() > 0) {
+	            fqdn = rdn.getNormValue() + "." + fqdn;
+	        } else {
+	            fqdn = rdn.getNormValue();
+	        }
+	    }
+	    return fqdn;
     }
 
     private static String getDerefJndiValue(LdapDerefAliasesType derefAliases) {
