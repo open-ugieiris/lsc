@@ -80,13 +80,10 @@
 		<finalName>${project.artifactId}-${project.version}</finalName>
 
 		<plugins>
-		
+
 			<plugin>
-			<!-- 
-			Quickfix so the maven-jaxb2-plugin is JDK 8 compatible
-			See https://java.net/jira/browse/MAVEN_JAXB2_PLUGIN-80. 
-			Please remove this when jaxb plugins is upgraded to 0.9.0+
-			-->
+				<!-- Quickfix so the maven-jaxb2-plugin is JDK 8 compatible See https://java.net/jira/browse/MAVEN_JAXB2_PLUGIN-80. 
+					Please remove this when jaxb plugins is upgraded to 0.9.0+ -->
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>properties-maven-plugin</artifactId>
 				<version>1.0-alpha-2</version>
@@ -266,13 +263,17 @@
 					<generateDirectory>src/main/java</generateDirectory>
 					<generatePackage>org.lsc.configuration</generatePackage>
 					<bindingDirectory>src/main/resources/schemas</bindingDirectory>
-					<bindingIncludes><bindingInclude>lsc-core-2.2.xjc</bindingInclude></bindingIncludes>
+					<bindingIncludes>
+						<bindingInclude>lsc-core-2.2.xjc</bindingInclude>
+					</bindingIncludes>
 					<schemaDirectory>src/main/resources/schemas</schemaDirectory>
 					<schemaIncludes>
 						<schemaInclude>lsc-core-2.2.xsd</schemaInclude>
 					</schemaIncludes>
 					<extension>true</extension>
-					<args><arg>-Xdefault-value</arg></args>
+					<args>
+						<arg>-Xdefault-value</arg>
+					</args>
 					<cleanPackageDirectories>false</cleanPackageDirectories>
 				</configuration>
 				<dependencies>
@@ -297,11 +298,8 @@
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
-								<!-- 
-								Quickfix so the maven-jaxb2-plugin is JDK 8 compatible
-								See https://java.net/jira/browse/MAVEN_JAXB2_PLUGIN-80. 
-								Please remove this when jaxb plugins is upgraded to 0.9.0+
-								-->
+								<!-- Quickfix so the maven-jaxb2-plugin is JDK 8 compatible See https://java.net/jira/browse/MAVEN_JAXB2_PLUGIN-80. 
+									Please remove this when jaxb plugins is upgraded to 0.9.0+ -->
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>
@@ -375,7 +373,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -385,13 +383,13 @@
 			</plugins>
 		</pluginManagement>
 
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>2.12</version>
-            </extension>
-        </extensions>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.1</version>
+			</extension>
+		</extensions>
 
 	</build>
 
@@ -402,8 +400,8 @@
 				<jdk>1.8</jdk>
 			</activation>
 			<properties>
-				<!-- Quickfix for javadoc generation with jdk8. Please remove this after fixing html 
-				validation errors in javadoc commentary. -->
+				<!-- Quickfix for javadoc generation with jdk8. Please remove this after 
+					fixing html validation errors in javadoc commentary. -->
 				<javadoc.opts>-Xdoclint:none</javadoc.opts>
 				<bc-jdk-version>jdk16</bc-jdk-version>
 			</properties>
@@ -543,10 +541,10 @@
 			<url>http://download.java.net/maven/2</url>
 		</repository>
 		<repository>
-                        <id>forgerock-community-repository</id>
-                        <name>ForgeRock CommunityRepository</name>
-                        <url>http://maven.forgerock.org/repo/community</url>
-                </repository>
+			<id>forgerock-community-repository</id>
+			<name>ForgeRock CommunityRepository</name>
+			<url>http://maven.forgerock.org/repo/community</url>
+		</repository>
 		<repository>
 			<id>oracleReleases</id>
 			<name>Oracle Released Java Packages</name>
@@ -683,7 +681,7 @@
 		<dependency>
 			<groupId>com.sleepycat</groupId>
 			<artifactId>je</artifactId>
-			<version>4.1.10</version>
+			<version>4.0.92</version>
 		</dependency>
 		<dependency>
 			<groupId>bouncycastle</groupId>
@@ -768,7 +766,7 @@
 		<dependency>
 			<groupId>javaee</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>5</version>
+			<version>6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.btm</groupId>
@@ -790,6 +788,20 @@
 			<artifactId>xml-apis</artifactId>
 			<version>1.4.01</version>
 		</dependency>
+
+		<!-- Dépendance pour gérer l'interfaçage avec Novell -->
+		<dependency>
+			<groupId>com.novell</groupId>
+			<artifactId>ldap</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.novell</groupId>
+			<artifactId>security</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
 	</dependencies>
 
 	<distributionManagement>
