@@ -72,10 +72,16 @@ import org.apache.directory.api.ldap.extras.controls.syncrepl.syncState.SyncStat
 import org.apache.directory.api.ldap.extras.controls.syncrepl.syncState.SyncStateValue;
 import org.apache.directory.api.ldap.extras.controls.syncrepl_impl.SyncRequestValueDecorator;
 import org.apache.directory.api.ldap.model.cursor.EntryCursor;
+import org.apache.directory.api.ldap.model.entry.Attribute;
+import org.apache.directory.api.ldap.model.entry.Entry;
+import org.apache.directory.api.ldap.model.entry.Value;
 import org.apache.directory.api.ldap.model.exception.LdapException;
 import org.apache.directory.api.ldap.model.exception.LdapInvalidDnException;
 import org.apache.directory.api.ldap.model.message.AliasDerefMode;
+import org.apache.directory.api.ldap.model.message.Control;
+import org.apache.directory.api.ldap.model.message.LdapResult;
 import org.apache.directory.api.ldap.model.message.MessageTypeEnum;
+import org.apache.directory.api.ldap.model.message.Response;
 import org.apache.directory.api.ldap.model.message.ResultCodeEnum;
 import org.apache.directory.api.ldap.model.message.SearchRequest;
 import org.apache.directory.api.ldap.model.message.SearchRequestImpl;
@@ -101,9 +107,8 @@ import org.lsc.exception.LscServiceCommunicationException;
 import org.lsc.exception.LscServiceConfigurationException;
 import org.lsc.exception.LscServiceException;
 import org.lsc.jndi.SimpleJndiSrcService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.sun.jndi.ldap.LdapResult;
 
 /**
  * You will find there the SyncRepl source service that can attach to a compatible directory to get updates on the fly.
@@ -290,7 +295,7 @@ public class SyncReplSourceService extends SimpleJndiSrcService implements IAsyn
         Map<String, LscDatasets> temporaryMap = new HashMap<String, LscDatasets>(1);
         if (sf == null || sf.isCancelled()) {
             try {
-                SearchRequest searchRequest = new SearchRequestImpl();
+                searchRequest searchRequest = new SearchRequestImpl();
                 searchRequest.addControl(getSearchContinuationControl(srsc.getServerType()));
                 searchRequest.setBase(new Dn(getBaseDn()));
                 searchRequest.setFilter(getFilterAll());
