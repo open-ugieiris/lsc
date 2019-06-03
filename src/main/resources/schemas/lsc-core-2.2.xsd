@@ -294,6 +294,7 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="KEEP" />
 			<xsd:enumeration value="FORCE" />
+			<xsd:enumeration value="FORCEDELTA" />
 			<xsd:enumeration value="MERGE" />
 		</xsd:restriction>
 	</xsd:simpleType>
