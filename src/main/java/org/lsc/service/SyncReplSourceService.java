@@ -295,7 +295,7 @@ public class SyncReplSourceService extends SimpleJndiSrcService implements IAsyn
         Map<String, LscDatasets> temporaryMap = new HashMap<String, LscDatasets>(1);
         if (sf == null || sf.isCancelled()) {
             try {
-                searchRequest searchRequest = new SearchRequestImpl();
+                SearchRequest searchRequest = new SearchRequestImpl();
                 searchRequest.addControl(getSearchContinuationControl(srsc.getServerType()));
                 searchRequest.setBase(new Dn(getBaseDn()));
                 searchRequest.setFilter(getFilterAll());

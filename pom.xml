@@ -5,7 +5,7 @@
 	<groupId>org.lsc</groupId>
 	<artifactId>lsc-core</artifactId>
 	<name>LDAP Synchronization Connector</name>
-	<version>2.2.3</version>
+	<version>2.2.5</version>
 	<description>
 		This project is the LDAP Synchronization Connector which
 		simplifies synchronizations between relation databases and LDAP
@@ -814,6 +814,13 @@
 			<groupId>su.com.ibm.as400</groupId>
 			<artifactId>jt400</artifactId>
 			<version>JTOpen7.10</version>
+		</dependency>
+		
+		<!-- Dépendance pour gérer oracle -->
+		<dependency>
+		  <groupId>su.oracle.jdbc</groupId>
+		  <artifactId>ojdbc7</artifactId>
+		  <version>1.0.0</version>
 		</dependency>
 		
 	</dependencies>

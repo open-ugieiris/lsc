@@ -199,6 +199,23 @@ public class ScriptableJndiServices extends ScriptableObject {
 
     /**
      * <P>
+     * Performs a search with subtree scope on a given base DN with a given filter returning attribute values
+     * </P>
+     *
+     * @param base
+     *            The base DN to search from.
+     * @attribute attribute The attribute to search.
+     * @return List<String> List of attributes values returned by the search.
+     * @throws NamingException
+     * @throws LscServiceException
+     */
+    public List<String> searchAttributeValues(Object base, Object attribute)
+            throws NamingException, LscServiceException {
+        return _searchAttributeValues((String) base, (String) attribute);
+    }
+
+    /**
+     * <P>
      * Performs a search with one level scope on a given base DN with a given filter returning attribute values
      * </P>
      *
@@ -222,7 +239,6 @@ public class ScriptableJndiServices extends ScriptableObject {
         List<String> attrsNames = new ArrayList<String>();
         attrsNames.add(attribute);
 
-        // Searching attributes values
         Map<String, LscDatasets> res = jndiServices.getAttrsList(base, filter, scope, attrsNames);
 
         for (Map.Entry<String, LscDatasets> entry : res.entrySet()) {
@@ -230,6 +246,14 @@ public class ScriptableJndiServices extends ScriptableObject {
         }
 
         return resAttributes;
+    }
+
+    protected List<String> _searchAttributeValues(String objectDn, String attribute)
+            throws NamingException, LscServiceException {
+
+        // Searching attributes values
+
+        return jndiServices.getAttributeValues(objectDn, attribute);
     }
 
     /**
