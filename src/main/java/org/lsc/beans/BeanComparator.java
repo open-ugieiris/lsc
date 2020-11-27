@@ -300,7 +300,7 @@ public final class BeanComparator {
             LscDatasetModification mi2 = null;
             switch (operationType) {
             case DELETE_VALUES:
-                if (attrStatus == PolicyType.FORCE) {
+                if (attrStatus == PolicyType.FORCE || attrStatus == PolicyType.FORCEDELTA) {
                     LOGGER.debug("{} Deleting attribute  \"{}\"", logPrefix, attrName);
                     mi = new LscDatasetModification(operationType, attrName, new HashSet<Object>());
                 }
@@ -311,7 +311,8 @@ public final class BeanComparator {
                 LOGGER.debug("{} Adding attribute \"{}\" with values {}",
                         new Object[] { logPrefix, attrName, toSetAttrValues });
 
-                if (modType != LscModificationType.CREATE_OBJECT && attrStatus == PolicyType.FORCE) {
+                if (modType != LscModificationType.CREATE_OBJECT
+                        && (attrStatus == PolicyType.FORCE || attrStatus == PolicyType.FORCEDELTA)) {
                     // By default, if we try to modify an attribute in
                     // the destination entry, we have to care to replace all
                     // values in the following conditions:
